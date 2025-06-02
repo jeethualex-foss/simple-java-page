@@ -23,6 +23,7 @@ $(document).ready(function(){
         dataType: "json",
         success: function( response ) {
             console.log( response );
+            $("#api").text(response.aa);
         }
     });
 
