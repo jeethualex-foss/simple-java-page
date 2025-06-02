@@ -1,22 +1,26 @@
 app := simple-java-page
 user :=
 pass :=
-tag :=
+image :=
 
 default: login
 
-publish: build deploy
+publish: clean build deploy
 
 login:
 	docker login -u $(user) -p $(pass)
 
 build:
-	docker build -t $(tag) .
-	docker push $(tag)
+	docker build -t $(image) .
+	docker push $(image)
 
 deploy:
 	docker stop $(app) || true && docker rm $(app) || true
-	docker run --name $(app) -d -p 80:80 $(tag)
+	docker run --name $(app) -d -p 80:80 $(image)
 
 debug:
 	docker exec -it $(app) sh
+
+clean:
+	docker stop $(app) || true && docker rm $(app) || true
+	docker rmi $(image) -f
