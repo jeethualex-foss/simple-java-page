@@ -18,4 +18,12 @@ $(document).ready(function(){
 
     common.printF(jsonObject);
 
+    $.ajax({
+        url: "http://localhost:8080/hello1",
+        dataType: "json",
+        success: function( response ) {
+            console.log( response );
+        }
+    });
+
 });

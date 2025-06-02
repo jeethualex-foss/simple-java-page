@@ -24,7 +24,7 @@ deploy_api:
 
 deploy:
 	docker stop $(app) || true && docker rm $(app) || true
-	docker run --name $(app) -d -p 80:80 $(image)
+	docker run --name $(app) --link api:rest -d -p 80:80 $(image)
 
 debug:
 	docker exec -it $(app) sh

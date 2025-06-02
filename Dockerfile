@@ -9,6 +9,9 @@ RUN mkdir /deployments
 COPY src /var/www/html
 COPY bin /deployments
 
+# Server changes
+RUN echo 'ServerName 127.0.0.1' >> /etc/httpd/conf/httpd.conf
+
 WORKDIR /deployments
 
 EXPOSE 80
